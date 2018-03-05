@@ -84,16 +84,15 @@ export default {
     }
   }
   .album {
-    transform: rotate(100deg);
-    /*animation:mymove 20s;*/
+    animation:mymove 20s;
     animation-play-state:running;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
   @keyframes mymove
   {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+    from {transform: rotate3d(0, 0, 1, 0deg);}
+    to {transform: rotate3d(0, 0, 1, 360deg);}
   }
   .music {
     color: $titleColor;

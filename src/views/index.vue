@@ -4,9 +4,6 @@
     <Photo :data="photoData"></Photo>
     <Menu :data="menuData"></Menu>
     <Content :data="contentData"></Content>
-    <div class="playState">
-      <img src="../assets/img/player.png">
-    </div>
   </div>
 </template>
 
@@ -93,14 +90,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .playState {
-    position: fixed;
-    top: 100px;
-    right: -3px;
-    img {
-      height: 20px;
-    }
-  }
-</style>
