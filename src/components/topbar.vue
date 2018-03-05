@@ -35,6 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../style/fontColor';
   header {
     position: fixed;
     top: 0;
@@ -42,9 +43,10 @@ export default {
     height: 60px;
     box-sizing: border-box;
     padding: 10px 15px;
-    color: #222;
-    background-color: rgba(255, 255, 255, 0.8);
+    color: $mainColor;
+    background-color: rgba(255, 255, 255, 0.99);
     z-index: 10;
+    border-bottom: 1px solid #edeeef;
     .date {
       font-family: Verdana;
       display: inline-block;
@@ -66,7 +68,7 @@ export default {
       span {
         font-weight: 300;
         font-size: 12px;
-        color: #9c9c9c;
+        color: $titleColor;
       }
     }
   }

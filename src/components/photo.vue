@@ -2,17 +2,12 @@
   <div v-if="data" class="photo-wrap">
     <div class="photo-content">
       <img :src="data.imgUrl" class="photo" @click="openModal">
-      <div class="like-count">
-        <Icon type="like"></Icon>
-        <span class="number">{{data.likeCount}}</span>
-      </div>
     </div>
     <div class="info-wrap">
       <p class="photo-info text-center">
         {{data.title}} | {{data.picInfo}}
       </p>
-      <p class="forward">
-        {{data.forward}}
+      <p class="forward" v-html="data.forward.replace('\n', '<br />')">
       </p>
       <p class="photo-info text-center">
         {{data.wordsInfo}}
@@ -24,9 +19,11 @@
         <span>发现</span>
       </div>
       <div class="right operation">
-        <Icon type="bookmark"></Icon>
         <Icon type="pencil"></Icon>
+        <Icon type="bookmark"></Icon>
         <Icon type="share"></Icon>
+        <Like :count="data.likeCount"></Like>
+        <div class="clearfix"></div>
       </div>
     </div>
     <div class="clearfix"></div>
@@ -42,11 +39,13 @@
 
 <script>
 import Icon from '@/components/icon';
+import Like from '@/components/like';
 
 export default {
   name: 'Photo',
   components: {
     Icon,
+    Like,
   },
   props: {
     data: Object,
@@ -73,47 +72,36 @@ export default {
       }
     },
   },
+  filters: {
+    formatForward(forward) {
+      return forward.replace('\n', '<br />');
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+  @import '../style/fontColor';
   .photo-wrap {
     background-color: #fff;
+    padding-bottom: 5px;
     .photo-content {
       position: relative;
       .photo {
         width: 100%;
-      }
-      .like-count {
-        position: absolute;
-        bottom: 20px;
-        right: 15px;
-        background-color: rgba(50, 50, 50, 0.5);
-        color: #fff;
-        font-size: 12px;
-        padding: 2px 10px;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .number {
-          display: inline-block;
-          font-weight: 100;
-          transform: scale(0.8, 0.8);
-        }
       }
     }
     .info-wrap {
       margin: 5px 40px;
       .photo-info {
         margin: 5px 0;
-        color: #9c9c9c;
+        color: $titleColor;
         font-size: 12px;
         font-weight: 200;
       }
       .forward {
-        margin: 80px 0;
-        color: #575859;
+        margin: 55px 0;
+        color: $contentColor;
         font-size: 14px;
         font-weight: 300;
         line-height: 30px;
@@ -125,7 +113,9 @@ export default {
       .discover {
         font-size: 12px;
         font-weight: 300;
-        color: #9c9c9c;
+        color: $titleColor;
+        position: relative;
+        top: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -134,6 +124,7 @@ export default {
         }
       }
       .operation {
+        margin-right: -5px;
         > div {
           margin-left: 25px;
         }
