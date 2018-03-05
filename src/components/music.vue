@@ -84,7 +84,8 @@ export default {
     }
   }
   .album {
-    animation:mymove 20s;
+    transform: rotate(100deg);
+    /*animation:mymove 20s;*/
     animation-play-state:running;
     animation-timing-function: linear;
     animation-iteration-count: infinite;

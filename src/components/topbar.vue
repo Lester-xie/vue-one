@@ -23,13 +23,11 @@ export default {
       year: '',
     };
   },
-  watch: {
-    data() {
-      const date = new Date(this.data.time).toString().split(' ');
-      this.day = date[2];
-      this.month = date[1];
-      this.year = date[3];
-    },
+  mounted() {
+    const date = (new Date()).toString().split(' ');
+    this.day = date[2];
+    this.month = date[1];
+    this.year = date[3];
   },
 };
 </script>
