@@ -14,7 +14,6 @@
 
 <script>
 import Icon from '@/components/icon';
-import API from '@/api';
 
 export default {
   name: 'Music',
@@ -35,20 +34,7 @@ export default {
       this.state = !this.state;
       this.playMusic(this.data.music_name);
     },
-    playMusic(musicName) {
-      if (this.music.src) {
-        if (this.state) {
-          this.music.play();
-        } else {
-          this.music.pause();
-        }
-      } else {
-        fetch(`${API.getMusicList}=${musicName}&limit=1`).then(res => res.json()).then((res) => {
-          const musicId = res.result.songs[0].id;
-          this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
-          this.music.play();
-        });
-      }
+    playMusic() {
     },
   },
 };
