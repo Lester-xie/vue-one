@@ -79,16 +79,16 @@ export default {
       border-radius: 50%;
     }
   }
+  @keyframes mymove
+  {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+  }
   .album {
     animation:mymove 20s;
     animation-play-state: paused;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-  }
-  @keyframes mymove
-  {
-    from {transform: rotate3d(0, 0, 1, 0deg);}
-    to {transform: rotate3d(0, 0, 1, 360deg);}
   }
   .music {
     color: $titleColor;
