@@ -31,7 +31,6 @@ export default {
     };
   },
   mounted() {
-    document.querySelector('.album').style.animationPlayState = 'paused';
   },
   methods: {
     changeState() {
