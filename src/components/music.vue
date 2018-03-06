@@ -34,7 +34,6 @@ export default {
     changeState() {
       this.state = !this.state;
       this.playMusic(this.data.music_name);
-      // document.querySelector('.album').style.animationPlayState = this.state ? 'running' : 'paused';
     },
     playMusic(musicName) {
       if (this.music.src) {
