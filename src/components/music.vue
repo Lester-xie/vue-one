@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="player">
-      <img :src="data.img_url" :class="['album', {running: state}]">
+      <img :src="data.img_url" class="album">
       <div class="icon" @click="changeState">
         <Icon :type="state ? 'pause' : 'play'"></Icon>
       </div>
@@ -14,6 +14,7 @@
 
 <script>
 import Icon from '@/components/icon';
+import API from '@/api';
 
 export default {
   name: 'Music',
@@ -27,6 +28,8 @@ export default {
     return {
       state: false,
       music: new Audio(),
+      timer: null,
+      deg: 0,
     };
   },
   methods: {
@@ -34,7 +37,31 @@ export default {
       this.state = !this.state;
       this.playMusic(this.data.music_name);
     },
-    playMusic() {
+    playMusic(musicName) {
+      if (this.music.src) {
+        if (this.state) {
+          this.music.play();
+        } else {
+          this.music.pause();
+        }
+      } else {
+        fetch(`${API.getMusicList}=${musicName}&limit=1`).then(res => res.json()).then((res) => {
+          const musicId = res.result.songs[0].id;
+          this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
+          this.music.play();
+        });
+      }
+      if (this.state) {
+        this.timer = setInterval(() => {
+          document.querySelector('.album').setAttribute('style', `transform: rotate(${this.deg}deg)`);
+          this.deg += 0.1;
+          if (this.deg > 360) {
+            this.deg = 0;
+          }
+        }, 5);
+      } else {
+        clearInterval(this.timer);
+      }
     },
   },
 };
@@ -65,25 +92,11 @@ export default {
       border-radius: 50%;
     }
   }
-  @keyframes mymove
-  {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
-  }
-  .album {
-    animation:mymove 20s;
-    animation-play-state: paused;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-  }
   .music {
     color: $titleColor;
     font-size: 12px;
     font-weight: 300;
     margin-top: 5px;
     margin-bottom: 20px;
-  }
-  .running {
-    animation-play-state: running !important;
   }
 </style>
