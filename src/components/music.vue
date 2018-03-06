@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="player">
-      <img :src="data.img_url" class="album">
+      <img :src="data.img_url" :class="['album', {running: state}]">
       <div class="icon" @click="changeState">
         <Icon :type="state ? 'pause' : 'play'"></Icon>
       </div>
@@ -30,13 +30,11 @@ export default {
       music: new Audio(),
     };
   },
-  mounted() {
-  },
   methods: {
     changeState() {
       this.state = !this.state;
       this.playMusic(this.data.music_name);
-      document.querySelector('.album').style.animationPlayState = this.state ? 'running' : 'paused';
+      // document.querySelector('.album').style.animationPlayState = this.state ? 'running' : 'paused';
     },
     playMusic(musicName) {
       if (this.music.src) {
@@ -84,7 +82,7 @@ export default {
   }
   .album {
     animation:mymove 20s;
-    animation-play-state:running;
+    animation-play-state: paused;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
@@ -99,5 +97,8 @@ export default {
     font-weight: 300;
     margin-top: 5px;
     margin-bottom: 20px;
+  }
+  .running {
+    animation-play-state: running !important;
   }
 </style>
