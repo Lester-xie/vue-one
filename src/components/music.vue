@@ -33,28 +33,21 @@ export default {
     };
   },
   mounted() {
-    this.playMusic(this.data.music_name);
+    fetch(`${API.getMusicList}=${this.data.music_name}&limit=1`).then(res => res.json()).then((res) => {
+      const musicId = res.result.songs[0].id;
+      this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
+    });
   },
   methods: {
     changeState() {
       this.state = !this.state;
       this.playMusic(this.data.music_name);
     },
-    playMusic(musicName) {
-      if (this.music.src) {
-        if (this.state) {
-          this.music.play();
-        } else {
-          this.music.pause();
-        }
+    playMusic() {
+      if (this.state) {
+        this.music.play();
       } else {
-        fetch(`${API.getMusicList}=${musicName}&limit=1`).then(res => res.json()).then((res) => {
-          const musicId = res.result.songs[0].id;
-          this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
-          setTimeout(() => {
-            this.music.play();
-          }, 100);
-        });
+        this.music.pause();
       }
       if (this.state) {
         this.timer = setInterval(() => {
