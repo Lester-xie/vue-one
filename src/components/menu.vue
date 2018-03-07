@@ -5,10 +5,12 @@
     </div>
     <div class="list-wrap" ref="list">
       <ul>
-        <li v-for="(item, index) in data.menuList" :key="index">
+        <li v-for="(item, index) in data.menuList"
+            :key="index"
+            @click="redirect(item.content_type, item.tag)">
           <Icon type="arrow-right" class="left scale bottom"></Icon>
           <div class="inline">
-            <p>{{item.content_type | contentType(item.tag)}}</p>
+            <p>{{contentType(item.content_type, item.tag)}}</p>
             <p>{{item.title}}</p>
           </div>
         </li>
@@ -51,21 +53,6 @@ export default {
         window.scrollTo(0, c + 8);
       }
     },
-  },
-  watch: {
-    data() {
-      this.$nextTick(() => {
-        this.listHeight = this.$refs.list.getBoundingClientRect().height;
-        this.$refs.list.style.height = 0;
-      });
-    },
-  },
-  computed: {
-    iconType() {
-      return this.active ? 'arrow-bottom' : 'arrow-top';
-    },
-  },
-  filters: {
     contentType(type, tag) {
       if (tag) {
         return tag.title;
@@ -80,6 +67,21 @@ export default {
         '音乐',
         '影视',
       ][type - 1];
+    },
+    redirect() {
+    },
+  },
+  watch: {
+    data() {
+      this.$nextTick(() => {
+        this.listHeight = this.$refs.list.getBoundingClientRect().height;
+        this.$refs.list.style.height = 0;
+      });
+    },
+  },
+  computed: {
+    iconType() {
+      return this.active ? 'arrow-bottom' : 'arrow-top';
     },
   },
 };

@@ -32,6 +32,9 @@ export default {
       deg: 0,
     };
   },
+  mounted() {
+    this.playMusic(this.data.music_name);
+  },
   methods: {
     changeState() {
       this.state = !this.state;
@@ -48,7 +51,9 @@ export default {
         fetch(`${API.getMusicList}=${musicName}&limit=1`).then(res => res.json()).then((res) => {
           const musicId = res.result.songs[0].id;
           this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
-          this.music.play();
+          setTimeout(() => {
+            this.music.play();
+          }, 100);
         });
       }
       if (this.state) {

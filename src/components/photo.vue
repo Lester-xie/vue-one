@@ -85,6 +85,7 @@ export default {
   .photo-wrap {
     background-color: #fff;
     padding-bottom: 5px;
+    margin-top: 60px;
     .photo-content {
       position: relative;
       .photo {

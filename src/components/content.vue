@@ -53,6 +53,9 @@ export default {
       if (tag.length > 0) {
         return tag[0].title;
       }
+      if (type === '8') {
+        return '电台';
+      }
       return [
         '阅读',
         '连载',
