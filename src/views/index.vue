@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <Topbar :data="baseData"></Topbar>
     <Photo :data="photoData"></Photo>
     <Menu :data="menuData"></Menu>
@@ -69,6 +69,7 @@ export default {
           contentList.forEach((item, index) => {
             if (index > 0) {
               this.contentData.push({
+                content_id: item.content_id,
                 content_type: item.content_type,
                 tag_list: item.tag_list,
                 title: item.title,
@@ -90,3 +91,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .wrap {
+    background-color: #edeeef;
+  }
+</style>

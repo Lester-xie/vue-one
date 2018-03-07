@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="content">
-      <div class="content-item" v-for="(item, index) in data" :key="index">
+      <div class="content-item" v-for="(item, index) in data"
+           :key="index"
+           v-if="item.content_type!=='8'"
+           @click="redirect(item.content_type, item.content_id)">
         <div class="type text-center">- {{item.content_type | contentType(item.tag_list)}} -</div>
         <div class="title">{{item.title}}</div>
         <div class="author" v-if="item.content_type === '3'">{{item.answerer.user_name}}答</div>
@@ -25,7 +28,7 @@
           <span class="date">今天</span>
           <div class="right">
             <Like :count="item.like_count"></Like>
-            <Icon type="share"></Icon>
+            <!--<Icon type="share"></Icon>-->
           </div>
         </div>
       </div>
@@ -48,13 +51,15 @@ export default {
   props: {
     data: Array,
   },
+  methods: {
+    redirect(type, id) {
+      location.href = `/article/${type}/${id}`;
+    },
+  },
   filters: {
     contentType(type, tag) {
       if (tag.length > 0) {
         return tag[0].title;
-      }
-      if (type === '8') {
-        return '电台';
       }
       return [
         '阅读',

@@ -19,9 +19,9 @@
         <span>发现</span>
       </div>
       <div class="right operation">
-        <Icon type="pencil"></Icon>
-        <Icon type="bookmark"></Icon>
-        <Icon type="share"></Icon>
+        <!--<Icon type="pencil"></Icon>-->
+        <!--<Icon type="bookmark"></Icon>-->
+        <!--<Icon type="share"></Icon>-->
         <Like :count="data.likeCount"></Like>
         <div class="clearfix"></div>
       </div>

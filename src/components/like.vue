@@ -1,5 +1,5 @@
 <template>
-  <div @click="click = !click" class="wrap">
+  <div @click.stop="click = !click" class="wrap">
     <Icon :type="click ? 'likeActive' : 'like'"></Icon>
     <div class="number-wrap inline">
       <span :class="['number', 'number1', click ? 'fadeout1' : 'fadein1']">{{count}}</span>

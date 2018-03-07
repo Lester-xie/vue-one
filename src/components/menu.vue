@@ -7,7 +7,8 @@
       <ul>
         <li v-for="(item, index) in data.menuList"
             :key="index"
-            @click="redirect(item.content_type, item.tag)">
+            v-if="item.content_type!=='8'"
+            @click="redirect(item.content_type, item.content_id)">
           <Icon type="arrow-right" class="left scale bottom"></Icon>
           <div class="inline">
             <p>{{contentType(item.content_type, item.tag)}}</p>
@@ -57,9 +58,6 @@ export default {
       if (tag) {
         return tag.title;
       }
-      if (type === '8') {
-        return '电台';
-      }
       return [
         '阅读',
         '连载',
@@ -68,7 +66,8 @@ export default {
         '影视',
       ][type - 1];
     },
-    redirect() {
+    redirect(type, id) {
+      location.href = `/article/${type}/${id}`;
     },
   },
   watch: {
