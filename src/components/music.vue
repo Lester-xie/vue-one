@@ -2,7 +2,7 @@
   <div>
     <div class="player">
       <img :src="data.img_url" class="album">
-      <div class="icon" @click="changeState">
+      <div class="icon" @click.stop="changeState">
         <Icon :type="state ? 'pause' : 'play'"></Icon>
       </div>
     </div>
