@@ -14,7 +14,7 @@
 
 <script>
 import Icon from '@/components/icon';
-// import API from '@/api';
+import API from '@/api';
 
 export default {
   name: 'Music',
@@ -33,12 +33,12 @@ export default {
     };
   },
   mounted() {
-    //  fetch(`${API.getMusicList}=${this.data.music_name}&limit=1`).
-    // then(res => res.json()).then((res) => {
-    //  const musicId = res.result.songs[0].id;
-    //  this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
-    //  });
-    this.music.src = 'http://music.163.com/song/media/outer/url?id=33894312.mp3';
+    fetch(`${API.getMusicList}=${this.data.music_name}&limit=1`)
+      .then(res => res.json()).then((res) => {
+        const musicId = res.result.songs[0].id;
+        this.music.src = `${API.getMusicUrl}=${musicId}.mp3`;
+      });
+    // this.music.src = 'http://music.163.com/song/media/outer/url?id=33894312.mp3';
   },
   methods: {
     changeState() {

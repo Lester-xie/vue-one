@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     redirect(type, id) {
-      location.href = `/article/${type}/${id}`;
+      location.href = `#/article/${type}/${id}`;
     },
   },
   filters: {

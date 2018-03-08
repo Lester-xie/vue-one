@@ -5,9 +5,8 @@ import Index from '@/views/index';
 import Article from '@/views/article';
 
 Vue.use(Router);
-
+const Bar = { template: '<div>hello</div>' };
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
@@ -16,9 +15,12 @@ export default new Router({
     },
     {
       path: '/article/:type/:id',
-      name: 'article',
       component: Article,
       props: true,
+    },
+    {
+      path: 'bar/:id',
+      component: Bar,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

@@ -67,7 +67,7 @@ export default {
       ][type - 1];
     },
     redirect(type, id) {
-      location.href = `/article/${type}/${id}`;
+      location.href = `#/article/${type}/${id}`;
     },
   },
   watch: {

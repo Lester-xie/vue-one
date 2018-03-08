@@ -10,6 +10,7 @@
 
 <script>
 import API from '@/api';
+import cheerio from 'cheerio';
 
 export default {
   name: 'Article',
@@ -40,7 +41,8 @@ export default {
         .then(res => res.json())
         .then((res) => {
           this.data = res.data;
-          document.write(this.data.html_content);
+          const $ = cheerio.load(this.data.html_content);
+          this.content = $('.one-content-box').html();
         });
     },
   },
