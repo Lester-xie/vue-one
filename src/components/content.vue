@@ -7,10 +7,10 @@
            @click="redirect(item.content_type, item.content_id)">
         <div class="type text-center">- {{item.content_type | contentType(item.tag_list)}} -</div>
         <div class="title">{{item.title}}</div>
-        <div class="author" v-if="item.content_type === '3'">{{item.answerer.user_name}}答</div>
+        <div class="author" v-if="item.content_type === 3">{{item.answerer.user_name}}答</div>
         <div class="author" v-else>文 / {{item.author.user_name}}</div>
         <div class="img-wrap">
-          <template v-if="item.content_type === '4'">
+          <template v-if="item.content_type === 4">
             <Music :data="item"></Music>
           </template>
           <template v-else>
@@ -18,7 +18,7 @@
           </template>
         </div>
         <div class="forward">{{item.forward}}</div>
-        <template v-if="item.content_type === '5'">
+        <template v-if="item.content_type === 5">
           <div class="subtitle right">
             ——《{{item.subtitle | getSubtitle}}》
           </div>

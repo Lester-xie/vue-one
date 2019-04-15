@@ -87,9 +87,11 @@ export default {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      padding:8px 10px;
+      padding:8px 7px 8px 8px;
       background-color: rgba(22, 22, 22, 0.7);
       border-radius: 50%;
+      height: 18px;
+      width: 18px;
     }
   }
   .music {
